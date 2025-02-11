@@ -22,7 +22,8 @@ class EconomicGroupController extends Controller
      */
     public function index()
     {
-        $groups = $this->economicGroupRepository->listAll();
+        $user = Auth::user();
+        $groups = $this->economicGroupRepository->list($user);
 
         return Inertia::render('EconomicGroups/index', [
             'paginatedGroups' => $groups
