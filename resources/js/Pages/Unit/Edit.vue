@@ -10,15 +10,15 @@
   import { Head, useForm } from '@inertiajs/vue3';
 
   const props = defineProps<{
-    brand: any
+    unit: any
   }>();
 
   const form = useForm({
-    name: props.brand.name,
+    name: props.unit.name,
   });
 
   const edit = () => {
-    form.patch(route('brand.update', props.brand.id), {
+    form.patch(route('unit.update', props.unit.id), {
       preserveScroll: true,
     });
   }
@@ -31,7 +31,7 @@
   <AuthenticatedLayout>
     <template #header>
       <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-        Editar Marcas
+        Editar Unidades
       </h2>
     </template>
 

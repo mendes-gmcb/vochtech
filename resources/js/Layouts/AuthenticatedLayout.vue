@@ -41,6 +41,9 @@
                                 <NavLink :href="route('brand.list')" :active="route().current('brand.list')">
                                     Marcas
                                 </NavLink>
+                                <NavLink :href="route('unit.list')" :active="route().current('unit.list')">
+                                    Unidades
+                                </NavLink>
                             </div>
                         </div>
 
@@ -117,6 +120,9 @@
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('brand.list')" :active="route().current('brand.list')">
                             Marcas
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('unit.list')" :active="route().current('unit.list')">
+                            Unidades
                         </ResponsiveNavLink>
                     </div>
 

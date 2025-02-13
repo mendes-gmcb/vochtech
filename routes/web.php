@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EconomicGroupController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::get('brand/edit/{brand}', [BrandController::class, 'edit'])->name('brand.edit');
     Route::patch('brand/{brand}', [BrandController::class, 'update'])->name('brand.update');
     Route::delete('brand/{brand}', [BrandController::class, 'destroy'])->name('brand.delete');
+    
+    Route::get('unit', [UnitController::class, 'index'])->name('unit.list');
+    Route::post('unit', [UnitController::class, 'store'])->name('unit.create');
+    Route::get('unit/edit/{unit}', [UnitController::class, 'edit'])->name('unit.edit');
+    Route::patch('unit/{unit}', [UnitController::class, 'update'])->name('unit.update');
+    Route::delete('unit/{unit}', [UnitController::class, 'destroy'])->name('unit.delete');
 });
 
 require __DIR__.'/auth.php';
