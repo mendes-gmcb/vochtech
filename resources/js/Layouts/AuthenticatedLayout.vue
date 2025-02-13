@@ -38,6 +38,9 @@
                                     :active="route().current('economic.group.list')">
                                     Grupos Econômicos
                                 </NavLink>
+                                <NavLink :href="route('brand.list')" :active="route().current('brand.list')">
+                                    Marcas
+                                </NavLink>
                             </div>
                         </div>
 
@@ -108,8 +111,12 @@
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('economic.group.list')" :active="route().current('economic.group.list')">
+                        <ResponsiveNavLink :href="route('economic.group.list')"
+                            :active="route().current('economic.group.list')">
                             Grupos Econômicos
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('brand.list')" :active="route().current('brand.list')">
+                            Marcas
                         </ResponsiveNavLink>
                     </div>
 

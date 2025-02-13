@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EconomicGroupController;
 use Illuminate\Foundation\Application;
@@ -29,6 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('economic-group/edit/{economicGroup}', [EconomicGroupController::class, 'edit'])->name('economic.group.edit');
     Route::patch('economic-group/{economicGroup}', [EconomicGroupController::class, 'update'])->name('economic.group.update');
     Route::delete('economic-group/{economicGroup}', [EconomicGroupController::class, 'destroy'])->name('economic.group.delete');
+    
+    Route::get('brand', [BrandController::class, 'index'])->name('brand.list');
+    Route::post('brand', [BrandController::class, 'store'])->name('brand.create');
+    Route::get('brand/edit/{brand}', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::patch('brand/{brand}', [BrandController::class, 'update'])->name('brand.update');
+    Route::delete('brand/{brand}', [BrandController::class, 'destroy'])->name('brand.delete');
 });
 
 require __DIR__.'/auth.php';
