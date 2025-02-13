@@ -118,7 +118,7 @@
 
         <form @submit.prevent="createEconomicGroup" class="mt-6 space-y-6">
           <div>
-            <InputLabel for="name" value="Name" />
+            <InputLabel for="name" value="Nome" />
 
             <TextInput id="name" ref="name" v-model="form.name" type="text" class="mt-1 block w-full h-8 rounded-md"
               autocomplete="name" />

@@ -39,7 +39,7 @@
       <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
         <form @submit.prevent="edit">
           <div>
-            <InputLabel for="name" value="Name" />
+            <InputLabel for="name" value="Nome" />
 
             <TextInput id="name" ref="name" v-model="form.name" type="text" class="mt-1 block w-full h-8 rounded-md"
               autocomplete="name" />
