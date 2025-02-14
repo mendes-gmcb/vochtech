@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EconomicGroup>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Unit>
  */
-class EconomicGroupFactory extends Factory
+class UnitFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,10 @@ class EconomicGroupFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'user_id' => 1,
+            'trade_name' => fake()->name(),
+            'legal_name' => fake()->company(),
+            'cnpj' => fake('pt_BR')->cnpj(false),
+            'brand_id' => 1,
         ];
     }
 }
