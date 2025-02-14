@@ -44,6 +44,9 @@
                                 <NavLink :href="route('unit.list')" :active="route().current('unit.list')">
                                     Unidades
                                 </NavLink>
+                                <NavLink :href="route('employees.index')" :active="route().current('employees.index')">
+                                    Colaboradores
+                                </NavLink>
                             </div>
                         </div>
 
@@ -123,6 +126,9 @@
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('unit.list')" :active="route().current('unit.list')">
                             Unidades
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('employees.index')" :active="route().current('employees.index')">
+                            Colaboradores
                         </ResponsiveNavLink>
                     </div>
 
