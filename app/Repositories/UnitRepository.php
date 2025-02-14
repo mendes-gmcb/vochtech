@@ -11,14 +11,14 @@ class UnitRepository
     return (Unit::paginate());
   }
 
-  public function listPaginate(array $groups)
+  public function listPaginate(array $brands)
   {
-    return Unit::whereIn("brand_id", $groups)->with('brand')->paginate();
+    return Unit::whereIn("brand_id", $brands)->with('brand')->paginate();
   }
 
-  public function list(array $groups)
+  public function list(array $brands)
   {
-    return Unit::whereIn("brand_id", $groups)->get();
+    return Unit::whereIn("brand_id", $brands)->get();
   }
 
   public function create($data) 

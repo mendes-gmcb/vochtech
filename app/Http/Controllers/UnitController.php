@@ -14,10 +14,11 @@ use Inertia\Inertia;
 
 class UnitController extends Controller
 {
-    public function __construct(protected UnitRepository $unitRepository, protected BrandRepository $brandRepository, protected EconomicGroupRepository $economicGroupRepository)
-    {
-        
-    }
+    public function __construct(
+        protected UnitRepository $unitRepository,
+        protected BrandRepository $brandRepository,
+        protected EconomicGroupRepository $economicGroupRepository
+    ) {}
 
     /**
      * Display a listing of the resource.
@@ -26,10 +27,10 @@ class UnitController extends Controller
     {
         $groups = $this->economicGroupRepository->list($request->user());
         $groupIds = $groups->pluck('id')->toArray();
-        
+
         $brands = $this->brandRepository->list($groupIds);
         $brandIds = $brands->pluck('id')->toArray();
-        
+
         $units = $this->unitRepository->listPaginate($brandIds);
 
         return Inertia::render('Unit/index', [
