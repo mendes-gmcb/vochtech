@@ -13,7 +13,9 @@ class Unit extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'trade_name',
+        'legal_name',
+        'cnpj',
         'brand_id',
     ];
 
