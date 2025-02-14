@@ -138,7 +138,7 @@
               <option v-for="(group, i) of groups" :key="i" :value="group.id">{{ group.name }}</option>
             </select>
 
-            <InputError :message="form.errors.name" class="mt-2" />
+            <InputError :message="form.errors.economic_group_id" class="mt-2" />
           </div>
 
           <div class="flex items-center gap-4">
