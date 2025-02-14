@@ -39,9 +39,6 @@
       preserveScroll: true,
       onSuccess: () => {
         form.reset();
-      },
-      onError: () => {
-        showCreateModal.value = false;
       }
     });
   };
