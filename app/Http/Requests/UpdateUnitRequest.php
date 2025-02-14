@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Cnpj;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUnitRequest extends FormRequest
@@ -22,7 +23,19 @@ class UpdateUnitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:150',
+            'trade_name' => 'required|string|max:255',
+            'legal_name' => 'required|string|max:255',
+            'cnpj' => ['required', 'string', 'size:14', 'regex:/^\d{14}$/', 'unique:units,cnpj,' . $this->unit?->id, new Cnpj],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        if ($this->has('cnpj')) {
+            // Remove caracteres especiais do CNPJ antes da validação
+            $this->merge([
+                'cnpj' => preg_replace('/[^0-9]/', '', $this->cnpj)
+            ]);
+        }
     }
 }
