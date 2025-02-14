@@ -12,10 +12,10 @@
   import InputLabel from '@/Components/InputLabel.vue';
   import TextInput from '@/Components/TextInput.vue';
   import PrimaryButton from '@/Components/PrimaryButton.vue';
-  import DangerButton from '@/Components/DangerButton.vue';
 
   import Modal from '@/Components/Modal.vue';
 
+  import UnitCard from './Fragments/UnitCard.vue';
 
   const props = defineProps<{
     brands: any,
@@ -30,7 +30,9 @@
   // console.log(page.props);
 
   const form = useForm({
-    name: '',
+    trade_name: '',
+    legal_name: '',
+    cnpj: '',
     brand_id: '',
   });
 
@@ -69,38 +71,8 @@
     </template>
 
     <div class="py-12">
-      <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-        <table class="w-full table-fixed border-collapse border border-gray-400">
-          <thead class="text-gray-800 dark:text-gray-200">
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Criado em</th>
-              <th scope="col">Editado em</th>
-              <th scope="col">Opções</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(unit, i) of units.data" :key="i" class="text-gray-800 dark:text-gray-200">
-              <td class="border border-gray-400 p-3">{{ unit.name }}</td>
-              <td class="border border-gray-400 p-3">{{ unit.brand.name }}</td>
-              <td class="border border-gray-400 p-3">{{ new Date(unit.created_at).toLocaleString('br-BR') }}</td>
-              <td class="border border-gray-400 p-3">{{ new Date(unit.updated_at).toLocaleString('br-BR') }}</td>
-              <td class="border border-gray-400 p-3 flex justify-around">
-                <Link :href="route('unit.edit', unit.id)" :active="route().current('unit.list')"
-                  class="text-base/10 align-baseline">
-                Editar
-                </Link>
-                <form @submit.prevent="deleteUnit(unit.id)">
-                  <DangerButton type="submit" class="ml-2">Remover</DangerButton>
-                </form>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- <div v-for="(group, i) of paginatedGroups.data" :key="i" class="text-gray-800 dark:text-gray-200">
-          {{ group }}
-        </div> -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <UnitCard v-for="(unit, i) of units.data" :key="i" :unit="unit" @delete="deleteUnit" />
       </div>
     </div>
 
@@ -108,7 +80,7 @@
       <section class="p-8">
         <header class="flex justify-between">
           <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            Criar Marca
+            Criar Unidade
           </h2>
 
           <button type="button" @click="() => showCreateModal = false">
@@ -122,23 +94,41 @@
 
         <form @submit.prevent="createUnit" class="mt-6 space-y-6">
           <div>
-            <InputLabel for="name" value="Nome" />
+            <InputLabel for="trade_name" value="Nome Comercial" />
 
-            <TextInput id="name" ref="name" v-model="form.name" type="text" class="mt-1 block w-full h-10 rounded-md"
-              autocomplete="name" />
+            <TextInput id="trade_name" ref="trade_name" v-model="form.trade_name" type="text"
+              class="mt-1 block w-full h-10 rounded-md" autocomplete="trade_name" />
 
-            <InputError :message="form.errors.name" class="mt-2" />
+            <InputError :message="form.errors.trade_name" class="mt-2" />
           </div>
-          
+
+          <div>
+            <InputLabel for="legal_name" value="Nome Legal" />
+
+            <TextInput id="legal_name" ref="legal_name" v-model="form.legal_name" type="text"
+              class="mt-1 block w-full h-10 rounded-md" autocomplete="legal_name" />
+
+            <InputError :message="form.errors.legal_name" class="mt-2" />
+          </div>
+
+          <div>
+            <InputLabel for="cnpj" value="CNPJ" />
+
+            <TextInput v-maska data-maska="##.###.###/####-##" id="cnpj" ref="cnpj" v-model="form.cnpj" type="text" class="mt-1 block w-full h-10 rounded-md"
+              autocomplete="cnpj" />
+
+            <InputError :message="form.errors.cnpj" class="mt-2" />
+          </div>
+
           <div>
             <InputLabel for="brand" value="Marca" />
 
-            <select name="brand" id="brand" ref="brand" v-model="form.brand_id" class="mt-1 block w-full h-10 rounded-md"
-              autocomplete="name">
+            <select name="brand" id="brand" ref="brand" v-model="form.brand_id"
+              class="mt-1 block w-full h-10 rounded-md" autocomplete="name">
               <option v-for="(brand, i) of brands" :key="i" :value="brand.id">{{ brand.name }}</option>
             </select>
 
-            <InputError :message="form.errors.name" class="mt-2" />
+            <InputError :message="form.errors.brand_id" class="mt-2" />
           </div>
 
           <div class="flex items-center gap-4">
