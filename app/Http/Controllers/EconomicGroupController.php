@@ -9,6 +9,7 @@ use App\Repositories\EconomicGroupRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Gate;
 
 class EconomicGroupController extends Controller
 {
@@ -63,6 +64,7 @@ class EconomicGroupController extends Controller
      */
     public function edit(EconomicGroup $economicGroup)
     {
+        Gate::authorize('update', $economicGroup);
         return Inertia::render('EconomicGroups/Edit', [
             'group' => $economicGroup,
         ]);
@@ -73,6 +75,7 @@ class EconomicGroupController extends Controller
      */
     public function update(UpdateEconomicGroupRequest $request, EconomicGroup $economicGroup)
     {
+        Gate::authorize('update', $economicGroup);
         $this->economicGroupRepository->update($request->validated(), $economicGroup->id);
 
         return Redirect::route('economic.group.edit', $economicGroup->id);
@@ -83,6 +86,7 @@ class EconomicGroupController extends Controller
      */
     public function destroy(EconomicGroup $economicGroup)
     {
+        Gate::authorize('delete', $economicGroup);
         $this->economicGroupRepository->delete($economicGroup->id);
 
         return Redirect::route('economic.group.list');

@@ -37,7 +37,7 @@ class EconomicGroupPolicy
      */
     public function update(User $user, EconomicGroup $economicGroup): bool
     {
-        return false;
+        return $user->id === $economicGroup->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class EconomicGroupPolicy
      */
     public function delete(User $user, EconomicGroup $economicGroup): bool
     {
-        return false;
+        return $user->id === $economicGroup->user_id;
     }
 
     /**
