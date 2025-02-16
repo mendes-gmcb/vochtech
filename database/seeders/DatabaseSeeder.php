@@ -18,13 +18,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@admin.com',
+        // ]);
 
-        EconomicGroup::factory()->create();
-        Brand::factory()->create();
-        Unit::factory()->create();
+        // EconomicGroup::factory()->create();
+        // Brand::factory()->create();
+        // Unit::factory()->create();
+
+        $this->call([TestDataSeeder::class]);
     }
 }

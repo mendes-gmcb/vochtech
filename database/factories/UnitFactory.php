@@ -19,7 +19,7 @@ class UnitFactory extends Factory
         return [
             'trade_name' => fake()->name(),
             'legal_name' => fake()->company(),
-            'cnpj' => fake('pt_BR')->cnpj(false),
+            'cnpj' => fake('pt_BR')->unique()->cnpj(false),
             'brand_id' => 1,
         ];
     }

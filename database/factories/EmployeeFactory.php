@@ -18,8 +18,8 @@ class EmployeeFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->email(),
-            'cpf' => fake('pt_BR')->cpf(false),
+            'email' => fake()->unique()->safeEmail(),
+            'cpf' => fake('pt_BR')->unique()->cpf(false),
             'unit_id' => 1,
         ];
     }
