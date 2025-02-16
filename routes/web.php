@@ -45,9 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('unit/{unit}', [UnitController::class, 'destroy'])->name('unit.delete');
 
     Route::resource('employees', EmployeeController::class);
-    Route::get('employees-export', [EmployeeController::class, 'export']);
-    Route::get('employees-report', [EmployeeController::class, 'report']);
-    Route::post('employees-import', [EmployeeController::class, 'import']);
+    Route::post('employees-export', [DashboardController::class, 'exportToExcel']);
+    // Route::get('employees-report', [EmployeeController::class, 'report']);
+    // Route::post('employees-import', [EmployeeController::class, 'import']);
 });
 
 require __DIR__ . '/auth.php';
