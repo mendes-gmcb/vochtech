@@ -31,6 +31,10 @@
         "vue-tsc": "^2.0.24"
     },
     "dependencies": {
-        "maska": "^3.1.0"
+        "@types/echarts": "^5.0.0",
+        "echarts": "^5.6.0",
+        "maska": "^3.1.0",
+        "vue-echarts": "^7.0.3",
+        "vue-sweetalert2": "^5.0.11"
     }
 }
